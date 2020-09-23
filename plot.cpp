@@ -90,7 +90,7 @@ Plot::Plot( QWidget *parent ):
 
     setAutoReplot( false );
     setCanvas( new Canvas() );
-
+    resize(600,600);
     plotLayout()->setAlignCanvasToScales( true );
 
     setAxisTitle( QwtPlot::xBottom, "Time [s]" );
@@ -130,7 +130,7 @@ Plot::Plot( QWidget *parent ):
     textAmplitude->setColor(Qt::white);
     textAmplitude->setRenderFlags( Qt::AlignHCenter | Qt::AlignTop );
     legendAmpitude->setText( *textAmplitude );
-    legendAmpitude->attach( this );
+    //legendAmpitude->attach( this );
 
     legendFrequency = new QwtPlotTextLabel();
     textFrecuencia=new QwtText;
@@ -139,7 +139,7 @@ Plot::Plot( QWidget *parent ):
     textFrecuencia->setColor(Qt::white);
     textFrecuencia->setRenderFlags( Qt::AlignLeft | Qt::AlignTop );
     legendFrequency->setText( *textFrecuencia );
-    legendFrequency->attach( this );
+    //legendFrequency->attach( this );
 }
 
 Plot::~Plot()

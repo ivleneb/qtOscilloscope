@@ -49,7 +49,7 @@ MainWindow::MainWindow( QWidget *parent ):
     currentScreen=new QLabel(this);
 
     //format extra
-    cb_showLegend->setChecked(true);
+    cb_showLegend->setChecked(false);
     btn_stop->setStyleSheet("background-color:blue");
     btn_fotoActual->setStyleSheet("background-color:blue");
     btn_changeColor->setStyleSheet("background-color:blue");
@@ -58,6 +58,11 @@ MainWindow::MainWindow( QWidget *parent ):
     currentScreen->setVisible(false);
     map_list->setVisible(false);
     btn_save->setVisible(false);
+    //
+    tHeader->setVisible(true);
+    map_list->setVisible(true);
+    currentScreen->setVisible(true);
+    btn_save->setVisible(true);
 
     QVBoxLayout* vLayout1 = new QVBoxLayout();
     vLayout1->addWidget( d_intervalWheel );
@@ -90,6 +95,8 @@ MainWindow::MainWindow( QWidget *parent ):
     layout->addLayout(vLayout2);
     layout->addLayout(vLayout4);
     layout->addLayout(vLayout3);
+
+    //d_container->setPixmap(d_plot->grab().scaled(500,500));
 
     connect( d_amplitudeKnob, SIGNAL( valueChanged( double ) ),
         SIGNAL( amplitudeChanged( double ) ) );
@@ -148,14 +155,14 @@ void MainWindow::addScreenshot(){
     // if 0 start showing
     Screenshot m;
     if(map_count==0){
-        tHeader->setVisible(true);
+        /*tHeader->setVisible(true);
         map_list->setVisible(true);
         currentScreen->setVisible(true);
         btn_save->setVisible(true);
         m.map=d_plot->grab().scaled(500,500);
-        d_container->setPixmap(m.map);
+        d_container->setPixmap(m.map);*/
     }
-    m.map=d_plot->grab().scaled(500,500/*,Qt::KeepAspectRatio*/);
+    m.map=d_plot->grab().scaled(410,390/*,Qt::KeepAspectRatio*/);
     m.frequency=d_frequencyKnob->value();
     m.amplitude=d_amplitudeKnob->value();
     QString itemtext="Item "+QString::number(map_count)+"\n";
@@ -167,7 +174,7 @@ void MainWindow::addScreenshot(){
     d_screen[map_count]=m;
     map_count++;
     d_container->setPixmap(m.map);
-    m.map=d_plot->grab().scaled(500,500);
+    m.map=d_plot->grab().scaled(410,390);
 
 }
 
